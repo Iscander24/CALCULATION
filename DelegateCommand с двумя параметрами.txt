@@ -1,0 +1,48 @@
+﻿1️⃣ Можно ли сделать два конструктора в DelegateCommand?
+
+Да, можно. И это нормальная практика.
+Обычно делают поддержку:
+
+команды без параметров
+
+команды с параметром
+
+Пример правильной реализации
+public class DelegateCommand : ICommand
+{
+    private readonly Action? _execute;
+    private readonly Action<object?>? _executeWithParam;
+
+    public DelegateCommand(Action execute)
+    {
+        _execute = execute;
+    }
+
+    public DelegateCommand(Action<object?> execute)
+    {
+        _executeWithParam = execute;
+    }
+
+    public event EventHandler? CanExecuteChanged;
+
+    public bool CanExecute(object? parameter) => true;
+
+    public void Execute(object? parameter)
+    {
+        if (_execute != null)
+            _execute();
+        else
+            _executeWithParam?.Invoke(parameter);
+    }
+}
+
+Использование
+_commandAC = new DelegateCommand(AC);
+_commandResult = new DelegateCommand(Result);
+
+private void AC() { }
+private void Result(object obj) { }
+
+
+✔ Без лямбд
+✔ Чисто и удобно
