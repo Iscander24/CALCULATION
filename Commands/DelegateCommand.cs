@@ -13,11 +13,22 @@ namespace CALCULATION.Commands
         {
             _function = function;
         }
+
+        public DelegateCommand(DelegateFunctionNoParam functionNoParam)
+        {
+            _functionNoParam = functionNoParam;
+        }
+
         public delegate void DelegateFunction(object obj);
 
-        public event EventHandler? CanExecuteChanged;
-
         private DelegateFunction _function;
+
+        public delegate void DelegateFunctionNoParam();
+
+        private DelegateFunctionNoParam _functionNoParam;
+
+
+        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object? parameter)
         {
@@ -26,7 +37,10 @@ namespace CALCULATION.Commands
 
         public void Execute(object? parameter)
         {
-            _function?.Invoke(parameter);
+            if (_functionNoParam != null) _functionNoParam();
+
+            else _function?.Invoke(parameter);
+
         }
     }
 }

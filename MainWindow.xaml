@@ -35,17 +35,17 @@
                              Grid.ColumnSpan="4"
                              Margin="10, 10, 10 ,10"/>
         <Button Content="AC" Grid.Column="0" Grid.Row="1" Command="{Binding CommandAC}"/>
-        <Button Content="1" Grid.Column="0" Grid.Row="2"/>
-        <Button Content="2" Grid.Column="1" Grid.Row="2"/>
-        <Button Content="3" Grid.Column="2" Grid.Row="2"/>
-        <Button Content="4" Grid.Column="0" Grid.Row="3"/>
-        <Button Content="5" Grid.Column="1" Grid.Row="3"/>
-        <Button Content="6" Grid.Column="2" Grid.Row="3"/>
-        <Button Content="7" Grid.Column="0" Grid.Row="4"/>
-        <Button Content="8" Grid.Column="1" Grid.Row="4"/>
-        <Button Content="9" Grid.Column="2" Grid.Row="4"/>
-        <Button Content="0" Grid.Column="1" Grid.Row="5"/>
-        <Button Content="," Grid.Column="2" Grid.Row="5"/>
+        <Button Content="1" Grid.Column="0" Grid.Row="2" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="2" Grid.Column="1" Grid.Row="2" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="3" Grid.Column="2" Grid.Row="2" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="4" Grid.Column="0" Grid.Row="3" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="5" Grid.Column="1" Grid.Row="3" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="6" Grid.Column="2" Grid.Row="3" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="7" Grid.Column="0" Grid.Row="4" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="8" Grid.Column="1" Grid.Row="4" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="9" Grid.Column="2" Grid.Row="4" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="0" Grid.Column="1" Grid.Row="5" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
+        <Button Content="," Grid.Column="2" Grid.Row="5" Command="{Binding KeyboardNumber}" CommandParameter="{Binding Content, RelativeSource={RelativeSource Self}}"/>
         <Button Content="+" Grid.Column="3" Grid.Row="1" Command="{Binding CommandAdd}"/>
         <Button Content="-" Grid.Column="3" Grid.Row="2" Command="{Binding CommandSubtract}"/>
         <Button Content="/" Grid.Column="3" Grid.Row="3" Command="{Binding CommandDivide}"/>
