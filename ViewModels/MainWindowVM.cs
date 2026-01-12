@@ -113,18 +113,20 @@ namespace CALCULATION.ViewModels
         }
 
 
-        //private DelegateCommand? _keyboardNumber;
-        //public DelegateCommand KeyboardNumber
-        //{
-        //    get
-        //    {
-        //        if (_keyboardNumber == null)
-        //        {
-        //            _keyboardNumber = new DelegateCommand(KeyBoardInput);
-        //        }
-        //        return _keyboardNumber;
-        //    }
-        //}
+        private DelegateCommand? _keyboardNumber;
+        public DelegateCommand KeyboardNumber
+        {
+            get
+            {
+                if (_keyboardNumber == null)
+                {
+                    _keyboardNumber = new DelegateCommand(KeyBoardInput);
+                }
+                return _keyboardNumber;
+            }
+        }
+
+
 
 
 
@@ -257,6 +259,16 @@ namespace CALCULATION.ViewModels
 
 
             }
+        }
+
+        private void KeyBoardInput(object? obj)
+        {
+            
+
+            double input = (double)obj;
+
+            Input = input;
+
         }
 
 
