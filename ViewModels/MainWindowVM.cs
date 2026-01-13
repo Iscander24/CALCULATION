@@ -13,8 +13,6 @@ namespace CALCULATION.ViewModels
     {
         private double? _inputStorage;
 
-        private double _result;
-
         private Operation _currentOperation;
                 
         
@@ -29,6 +27,19 @@ namespace CALCULATION.ViewModels
             }
         }
         private double? _input;
+
+
+        public StringBuilder KeyboardInput
+        {
+            get => _keyboardInput;
+
+            set
+            {
+
+            }
+        }
+
+        private StringBuilder _keyboardInput = new StringBuilder();
 
         #region =========================== Commands =========================================
 
@@ -263,12 +274,7 @@ namespace CALCULATION.ViewModels
 
         private void KeyBoardInput(object? obj)
         {
-            
-
-            double input = (double)obj;
-
-            Input = input;
-
+            Input = Convert.ToDouble(obj);
         }
 
 
