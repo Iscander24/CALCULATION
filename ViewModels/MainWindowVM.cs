@@ -29,17 +29,18 @@ namespace CALCULATION.ViewModels
         private double? _input;
 
 
-        public StringBuilder KeyboardInput
+        public string InputString
         {
-            get => _keyboardInput;
+            get => _inputString;
 
             set
             {
-
+                _inputString = value;
+                OnPropertyChanged(nameof(InputString));
             }
         }
 
-        private StringBuilder _keyboardInput = new StringBuilder();
+        private string _inputString;
 
         #region =========================== Commands =========================================
 
@@ -272,9 +273,21 @@ namespace CALCULATION.ViewModels
             }
         }
 
-        private void KeyBoardInput(object? obj)
+        public void KeyBoardInput(object? obj)
         {
-            Input = Convert.ToDouble(obj);
+            string unit = (string)obj;
+
+            if (unit.Contains('.') && InputString.Contains('.')) return;
+
+            InputString = (string)obj;
+
+
+        }
+
+        public void RemoveLast()
+        {
+            if (!string.IsNullOrEmpty(InputString))
+                InputString = InputString[..^1];
         }
 
 

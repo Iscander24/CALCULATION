@@ -31,7 +31,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/> 
         </Grid.RowDefinitions>
-        <cust:DecimalTextBox Text="{Binding Input}"
+        <cust:DecimalTextBox Text="{Binding InputString}"
                              Grid.ColumnSpan="4"
                              Margin="10, 10, 10 ,10"/>
         <Button Content="AC" Grid.Column="0" Grid.Row="1" Command="{Binding CommandAC}"/>
