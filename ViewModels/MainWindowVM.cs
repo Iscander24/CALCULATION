@@ -238,6 +238,8 @@ namespace CALCULATION.ViewModels
 
             Input = null;
 
+            InputString = null;
+
             _currentOperation = Operation.Start;
         }
 
@@ -279,7 +281,7 @@ namespace CALCULATION.ViewModels
 
             if (unit.Contains('.') && InputString.Contains('.')) return;
 
-            InputString = (string)obj;
+            InputString += (string)obj;
 
 
         }
