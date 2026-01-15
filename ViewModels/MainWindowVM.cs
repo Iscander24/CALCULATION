@@ -4,6 +4,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace CALCULATION.ViewModels
             set
             {
                 _input = value;
-                OnPropertyChanged(nameof(Input));
             }
         }
         private double? _input;
@@ -37,6 +37,14 @@ namespace CALCULATION.ViewModels
             set
             {
                 _inputString = value;
+                //if(double.TryParse(InputString, out double digit))
+                //{ 
+                //    Input = digit;
+                //}
+                //else
+                //{
+                //    Input = Input;
+                //}
                 OnPropertyChanged(nameof(InputString));
             }
         }
@@ -152,11 +160,15 @@ namespace CALCULATION.ViewModels
             if (_currentOperation == Operation.Start)
             {
                 _currentOperation = op;
-                _inputStorage = Input;
+                _inputStorage = InputConvert(InputString);
+                if (_inputStorage == null) return;
                 Input = null;   // убирает 
+                InputString = null;
             }
             else
             {
+                _input = InputConvert(InputString);
+
                 Result(_currentOperation,_inputStorage, _input, op);
             }
                 
@@ -172,10 +184,10 @@ namespace CALCULATION.ViewModels
                 return;
             }
 
-            Input = storage + current;
-            OnPropertyChanged(nameof(Input));
+            InputString = Convert.ToString(storage + current, CultureInfo.InvariantCulture);
+            OnPropertyChanged(nameof(InputString));
 
-            _inputStorage = Input;
+            _inputStorage = InputConvert(InputString);
             
             _currentOperation = newOp;
         }
@@ -189,10 +201,10 @@ namespace CALCULATION.ViewModels
                 return;
             }
 
-            Input = storage - current;
-            OnPropertyChanged(nameof(Input));
+            InputString = Convert.ToString(storage - current, CultureInfo.InvariantCulture);
+            OnPropertyChanged(nameof(InputString));
 
-            _inputStorage = Input;
+            _inputStorage = InputConvert(InputString);
 
             _currentOperation = newOp;
         }
@@ -207,10 +219,10 @@ namespace CALCULATION.ViewModels
                 return;
             }
 
-            Input = storage / current;
-            OnPropertyChanged(nameof(Input));
+            InputString = Convert.ToString(storage / current, CultureInfo.InvariantCulture);
+            OnPropertyChanged(nameof(InputString));
 
-            _inputStorage = Input;
+            _inputStorage = InputConvert(InputString);
 
             _currentOperation = newOp;
         }
@@ -225,10 +237,10 @@ namespace CALCULATION.ViewModels
                 return;
             }
 
-            Input = storage * current;
-            OnPropertyChanged(nameof(Input));
+            InputString = Convert.ToString(storage * current, CultureInfo.InvariantCulture);
+            OnPropertyChanged(nameof(InputString));
 
-            _inputStorage = Input;
+            _inputStorage = InputConvert(InputString);
 
             _currentOperation = newOp;
         }
@@ -248,6 +260,8 @@ namespace CALCULATION.ViewModels
         private void Result(object obj)
         {
             if (_inputStorage == null) return;
+
+            _input = InputConvert(InputString);
 
             Result(_currentOperation, _inputStorage, _input, Operation.Start);
             
@@ -286,13 +300,21 @@ namespace CALCULATION.ViewModels
 
 
         }
-
         public void RemoveLast()
         {
             if (!string.IsNullOrEmpty(InputString))
                 InputString = InputString[..^1];
         }
 
+        private double? InputConvert(string inputString)
+        {
+
+            return double.TryParse(inputString, 
+                                   System.Globalization.NumberStyles.Any, 
+                                   System.Globalization.CultureInfo.InvariantCulture, 
+                                   out var result) ? result : null;
+
+        }
 
 
         #endregion
